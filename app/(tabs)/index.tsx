@@ -4,6 +4,11 @@ import { StyleSheet, ScrollView, SafeAreaView, Platform, RefreshControl } from '
 import EditScreenInfo from '@/components/EditScreenInfo';
 import { Text, View } from '@/components/Themed';
 import Lottie from 'lottie-react-native'
+import { createRandomUser } from '@/utils/generate-dommy-data';
+
+const user = createRandomUser();
+//console.log(user)
+console.log(JSON.stringify(user, null, 2))
 
 export default function TabOneScreen() {
   const animationRef = React.useRef<Lottie>(null)
