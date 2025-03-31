@@ -1,6 +1,5 @@
 import React from "react";
 import { Image, StyleSheet, Platform } from "react-native";
-
 import { HelloWave } from "@/components/HelloWave";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
@@ -12,9 +11,14 @@ import {
   RefreshControl,
 } from "react-native-gesture-handler";
 import Lottie from "lottie-react-native";
+import { createRandomUser } from "@/utils/generate-dommy-data";
+import { ThreadContext } from "@/context/thread-context";
+
 
 export default function HomeScreen() {
   const animationRef = React.useRef<Lottie>(null);
+  const threads = React.useContext(ThreadContext)
+  
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaView>
@@ -45,6 +49,11 @@ export default function HomeScreen() {
             //   alert("finished")
             // }}
           />
+   
+          {threads.map((thread) => (
+            <ThemedText key={thread.id}>{thread.author.name}</ThemedText>
+          ))}
+
         </ScrollView>
       </SafeAreaView>
     </GestureHandlerRootView>

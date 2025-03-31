@@ -61,5 +61,5 @@ export function createRandomThread(): Thread {
 }
 
 export function generateThreads(): Thread[] {
-  return new Array(50).fill(null).map(() => createRandomThread());
+  return new Array(10).fill(null).map(() => createRandomThread());
 }
