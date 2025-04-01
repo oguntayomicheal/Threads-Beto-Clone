@@ -13,12 +13,12 @@ import {
 import Lottie from "lottie-react-native";
 import { createRandomUser } from "@/utils/generate-dommy-data";
 import { ThreadContext } from "@/context/thread-context";
-
+import ThreadsItem from "@/components/ThreadsItem";
 
 export default function HomeScreen() {
   const animationRef = React.useRef<Lottie>(null);
-  const threads = React.useContext(ThreadContext)
-  
+  const threads = React.useContext(ThreadContext);
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaView>
@@ -31,7 +31,9 @@ export default function HomeScreen() {
             <RefreshControl
               refreshing={false}
               tintColor={"transparent"}
-              onRefresh={() => {animationRef.current?.play()}}
+              onRefresh={() => {
+                animationRef.current?.play();
+              }}
             />
           }
         >
@@ -49,11 +51,10 @@ export default function HomeScreen() {
             //   alert("finished")
             // }}
           />
-   
-          {threads.map((thread) => (
-            <ThemedText key={thread.id}>{thread.author.name}</ThemedText>
-          ))}
 
+          {threads.map((thread) => (
+            <ThreadsItem key={thread.id} {...thread} />
+          ))}
         </ScrollView>
       </SafeAreaView>
     </GestureHandlerRootView>
